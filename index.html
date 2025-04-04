@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Notas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/x-icon" href="Imagenes/favicon-96x96.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <!-- Carrusel -->
+    <section class="carousel mt-4">
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="Imagenes/programacion-42-portada-noticia-2560x950-1.jpg" class="d-block w-100" alt="Imagen 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="Imagenes/Frame-57.png" class="d-block w-100" alt="Imagen 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="Imagenes/inteligencia-artificial.jpg" class="d-block w-100" alt="Imagen 3">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </section>
+
+        <!-- Encabezado -->
+        <header class="bg-dark text-white text-center py-4">
+            <h1>CALCULADORA DE NOTAS</h1>
+            <p>Herramienta académica para estudiantes</p>
+        </header>
+    
+
+    <!-- Calculadora -->
+    <main class="container my-5">
+        <div class="card shadow-sm p-4 fondo-calculadora">
+            <div class="mb-3">
+                <input type="number" step="0.1" class="form-control" id="primer_corte" placeholder="Nota del primer corte">
+            </div>
+            <div class="mb-3">
+                <input type="number" step="0.1" class="form-control" id="segundo_corte" placeholder="Nota del segundo corte">
+            </div>
+            <button class="btn btn-info w-100 mb-2" onclick="calcularNotaTercerCorte()">Calcular</button>
+            <div id="resultado" class="text-center my-3 fw-bold text-white"></div>
+            <button class="btn btn-secondary w-100" onclick="resetCalculadora()">Volver a Calcular</button>
+        </div>
+    </main>
+
+    <section style="height: auto; text-align: center;">
+        </p>CALCULA TU NOTA AQUÍ!</p>
+        <img src="Imagenes/ChatGPT Image 4 abr 2025, 04_04_49 p.m..png" style="width: 300px; height: 300px; object-fit: cover; border-radius: 10px;">
+    </section>
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p class="mb-0">&copy; 2025 - Sitio web educativo. Todos los derechos reservados Victor Yepes</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script -->
+    <script>
+        function calcularNotaTercerCorte() {
+            const primer_corte = parseFloat(document.getElementById("primer_corte").value);
+            const segundo_corte = parseFloat(document.getElementById("segundo_corte").value);
+            const resultadoDiv = document.getElementById("resultado");
+
+            if (isNaN(primer_corte) || isNaN(segundo_corte)) {
+                resultadoDiv.innerHTML = "Por favor, ingresa ambas notas válidas.";
+                return;
+            }
+
+            let nota_tercer_corte = (3.0 - (primer_corte * 0.3 + segundo_corte * 0.3)) / 0.4;
+            nota_tercer_corte = nota_tercer_corte.toFixed(1);
+
+            if (nota_tercer_corte > 5.0) {
+                resultadoDiv.innerHTML = "No es posible aprobar matemáticamente. Se requiere más de 5.0.";
+            } else {
+                resultadoDiv.innerHTML = `Necesitas al menos <strong>${nota_tercer_corte}</strong> en el tercer corte para aprobar.`;
+            }
+        }
+
+        function resetCalculadora() {
+            document.getElementById("primer_corte").value = "";
+            document.getElementById("segundo_corte").value = "";
+            document.getElementById("resultado").innerHTML = "";
+        }
+    </script>
+
+</body>
+</html>
